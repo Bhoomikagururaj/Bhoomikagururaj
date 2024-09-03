@@ -1,0 +1,152 @@
+{% load static %}
+<html>
+{%  block content %}
+<head>
+<style>
+*{transition:all 0.3s ease-in-out;}
+* {
+	box-sizing: border-box;
+}
+body {
+	font-size: 16px;
+	color: #fff;
+	background-color:lightblue;
+}
+.container{
+  clear:both;
+  overflow:auto;
+}
+
+nav{float:right;}
+
+.logo img{float:left;
+padding-top: 30px;
+padding-left: 20px;}
+
+  ul li {
+    display: inline-block;
+    padding: 20px 30px;
+    font-size:20px;
+  }
+
+nav ul li a{
+  text-decoration: none;
+    }
+
+
+
+.form-box {
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto auto;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #000;
+	position: absolute;
+	top: 50vh;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 500px;
+	height: 650px;
+}
+.form-box:before {
+	background-image: url({%static 'images/dataentry.jpg' %});
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	content: "";
+	position:fixed;
+	left: 0;
+	right: 0;
+	top: 15vh;
+	bottom: 0;
+	z-index: -1;
+	display: block;
+	filter: blur(2px);
+}
+.form-box .header-text {
+	font-size: 32px;
+	font-weight: 600;
+	padding-bottom: 30px;
+	text-align: center;
+}
+.form-box input {
+	margin: 10px 0px;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 18px;
+	font-family: poppins;
+}
+.form-box input[type=checkbox] {
+	display: none;
+}
+#button_sumbit{
+	background-color: deepskyblue;
+	color: white;
+}
+
+.form-box button {
+	background-color: #d633ff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+	padding: 20px;
+	margin: 20px 0px;
+}
+label{
+	font-family: monospace;
+	font-size: 20px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+  <ul>
+  <a href=""><li>Home</li></a>
+   <a href="dataentry"><li>Data Entry</li></a>
+  <a href="prediction"><li>Prediction</li></a>
+  <a href="logout"><li>Logout</li></a>
+  </ul>
+  </nav>
+</div>
+<div class="bg_container">
+  <div class="form-box">
+    <div class="header-text">
+      Enter your Data
+    </div>
+    <form   action="prediction"  method="POST">
+		{% csrf_token %}
+    <label for="Age	">Age</label>
+    <input type="text"  id="age" name="age" required>
+
+    <label for="SystolicBP">SystolicBP</label>
+    <input type="text"  id="SystolicBP" name="SystolicBP" required>
+
+    <label for="DiastolicBP">DiastolicBP</label>
+    <input type="text"  name="DiastolicBP" id="DiastolicBP" required>
+
+	<label for="BS">BS</label>
+	<input type="text" name="BS" id="BS" required>
+
+    <label for="BodyTemp">BodyTemp</label>
+    <input type="text"  name="BodyTemp" id="BodyTemp" required>
+
+    <label for="HeartRate">HeartRate</label>
+    <input type="text"  name="HeartRate" id="HeartRate" required>
+
+    <button type="submit" >Prediction</button>
+    
+  </div>
+</div>
+</form>
+{% endblock  %}
+</body>
+</html>
+    
